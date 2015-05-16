@@ -57,4 +57,24 @@
             }
         }
 
+        /**
+         * Helper to set any object internal attribute value
+         *
+         * This prevent from relying on a setter when testing a getter
+         *
+         * @param $instance
+         * @param $property
+         * @param $value
+         *
+         * @return $this
+         */
+        public function setObjectAttribute($instance, $property, $value)
+        {
+            $reflection = new \ReflectionObject($instance);
+            $property   = $reflection->getProperty($property);
+            $property->setAccessible(true);
+            $property->setValue($instance, $value);
+
+            return $this;
+        }
     }

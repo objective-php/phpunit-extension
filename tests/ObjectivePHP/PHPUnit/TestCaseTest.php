@@ -71,6 +71,27 @@
             }, InvalidArgumentException::class);
         }
 
+        public function testObjectInternalPropertySetting()
+        {
+            // this is intended as the opposite of assertAttributeEquals()
+
+
+            $instance = new ObjectContainingHiddenProperties();
+            $this->testCase->setObjectAttribute($instance, 'a', 'x');
+            $result = $this->testCase->setObjectAttribute($instance, 'b', 'y');
+
+            $this->assertAttributeEquals('x', 'a', $instance);
+            $this->assertAttributeEquals('y', 'b', $instance);
+            $this->assertSame($this->testCase, $result);
+
+        }
 
     }
 
+
+class ObjectContainingHiddenProperties
+{
+    protected $a = 'a';
+    private $b = 'b';
+
+}
