@@ -21,8 +21,8 @@
     "phpunit/phpunit": "4.*"
   },
   "autoload": {
-    "psr-0": {
-      "ObjectivePHP\\PHPUnit": "src/"
+    "psr-4": {
+      "ObjectivePHP\\": "src/"
     }
   }
 }
